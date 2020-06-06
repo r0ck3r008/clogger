@@ -42,6 +42,8 @@ int logchild_pretty_p(Logchild *lchild, char *buf)
 		return 0;
 	}
 	fprintf(lchild->outf, "%s\n", strtok(NULL, ":"));
+
+	return 1;
 }
 
 void logchild_exec(Logchild *lchild)
