@@ -3,10 +3,12 @@
 
 #include<stdarg.h>
 
+#include"logger.h"
+
 typedef struct Log
 {
-	char *fmt;
-	va_list args;
+	char *log;
+	LOG_LVL lvl;
 	struct Log *next;
 } Log;
 
@@ -16,7 +18,7 @@ typedef struct Logque
 } Logque;
 
 Logque *logque_init();
-void logque_push(Logque *, char *, va_list);
+void logque_push(Logque *, char *, LOG_LVL);
 Log *logque_pop(Logque *);
 void logque_deinit(Logque *);
 

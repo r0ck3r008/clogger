@@ -15,11 +15,11 @@ Logque *logque_init()
 	return logq;
 }
 
-void logque_push(Logque *logq, char *fmt, va_list args)
+void logque_push(Logque *logq, char *log, LOG_LVL lvl)
 {
 	Log *node=calloc(1, sizeof(Log));
-	va_copy(node->args, args);
-	node->fmt=fmt;
+	node->log=log;
+	node->lvl=lvl;
 
 	if(logq->start==NULL)
 		logq->start=node;
@@ -43,12 +43,10 @@ void logque_deinit(Logque *logq)
 	Log *curr=logq->start->next;
 	while(logq->start->next!=NULL) {
 		logq->start->next=curr->next;
-		free(curr->fmt);
-		va_end(curr->args);
+		free(curr->log);
 		free(curr);
 	}
-	free(logq->start->fmt);
-	va_end(logq->start->args);
+	free(logq->start->log);
 	free(logq->start);
 	free(logq);
 }
