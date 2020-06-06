@@ -1,5 +1,3 @@
 tmp/*
 !tmp/.gitkeep
-bin/*
-!bin/.gitkeep
 .syntastic_config
