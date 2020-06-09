@@ -14,7 +14,9 @@ Logchild *logchild_init(int sock, char *path, LOG_LVL lvl)
 	}
 	lchild->sock=sock;
 	lchild->lvl=lvl;
-	if((lchild->outf=fopen(path, "w"))==NULL) {
+	if(!strcmp("-", path)) {
+		lchild->outf=stdout;
+	} else if((lchild->outf=fopen(path, "w"))==NULL) {
 		fprintf(stderr, "[-]LOGCHILD: Fopen: %s\n", strerror(errno));
 		return NULL;
 	}
