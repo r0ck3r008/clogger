@@ -1,6 +1,6 @@
 COMPILER := gcc
 COMPILER_FLAGS := '-g -Wall -Werror -fpic'
-COMPILE_PATH := ${PWD}/include
+COMPILE_PATH := ${shell pwd}/include
 LINKER_FLAGS := -shared
 
 ALL_OBJS := entrypoint/*.o logger/*.o
