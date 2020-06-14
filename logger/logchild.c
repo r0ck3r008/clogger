@@ -52,9 +52,13 @@ void logchild_exec(Logchild *lchild)
 {
 	while(1) {
 		char buf[512];
-		if(read(lchild->sock, buf, sizeof(char)*512)<0) {
-			fprintf(lchild->outf, "LOGCHILD: Read: %s\n",
+		int stat=1;
+		if((stat=read(lchild->sock, buf, sizeof(char)*512))<0) {
+			fprintf(lchild->outf, "[-]LOGCHILD: Read: %s\n",
 							strerror(errno));
+			break;
+		} else if(!stat) {
+			fprintf(lchild->outf, "[-]LOGCHILD: READ: Empty read\n");
 			break;
 		}
 		if(!strcmp("EXIT", buf))
