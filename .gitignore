@@ -2,3 +2,4 @@ tmp/*
 !tmp/.gitkeep
 .syntastic_config
 libclogger.so
+example.out
