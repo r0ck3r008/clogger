@@ -29,6 +29,7 @@ Logger *logger_init(char *path, LOG_LVL lvl)
 		if((lchild=logchild_init(socks[1], path, lvl))==NULL)
 			_exit(-1);
 		logchild_exec(lchild);
+		_exit(1);
 	} else if(pid<0) {
 		//error
 		fprintf(stderr, "[-]LOGGER: Fork: %s\n", strerror(errno));
