@@ -19,9 +19,15 @@ logger_objs:
 	COMPILER=${COMPILER} COMPILE_PATH=${COMPILE_PATH} \
 		 COMPILER_FLAGS=${COMPILER_FLAGS} make -C logger/
 
+example_objs:
+	COMPILER=${COMPILER} COMPILE_PATH=${COMPILER_PATH} \
+		 COMPILER_FLAGS=${COMPILER_FLAGS} make -C example/
+
 clean_objs:
 	make -C entrypoint/ clean
 	make -C logger/ clean
+	make -C example/ clean
 
 clean: clean_objs
 	rm -f *.so
+	rm -f *.out
