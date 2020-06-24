@@ -1,5 +1,6 @@
 COMPILER := gcc
 COMPILER_FLAGS := '-g -Wall -Werror -fpic'
+EX_COMPILER_FLAGS := -g
 COMPILE_PATH := ${shell pwd}/include
 LINKER_FLAGS := -shared
 
@@ -21,8 +22,8 @@ logger_objs:
 		 COMPILER_FLAGS=${COMPILER_FLAGS} make -C logger/
 
 example_objs:
-	COMPILER=${COMPILER} COMPILE_PATH=${COMPILER_PATH} \
-		 COMPILER_FLAGS=${COMPILER_FLAGS} make -C example/
+	COMPILER=${COMPILER} COMPILE_PATH=${COMPILE_PATH} \
+		 COMPILER_FLAGS=${EX_COMPILER_FLAGS} make -C example/
 
 clean_objs:
 	make -C entrypoint/ clean
