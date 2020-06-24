@@ -58,7 +58,8 @@ void logchild_exec(Logchild *lchild)
 							strerror(errno));
 			break;
 		} else if(!stat) {
-			fprintf(lchild->outf, "[-]LOGCHILD: READ: Empty read\n");
+			fprintf(lchild->outf,
+				"[-]LOGCHILD: READ: Empty read\n");
 			break;
 		}
 		if(!strcmp("EXIT", buf))
