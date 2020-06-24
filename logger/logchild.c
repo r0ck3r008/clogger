@@ -26,7 +26,7 @@ Logchild *logchild_init(int sock, char *path, LOG_LVL lvl)
 
 int logchild_pretty_p(Logchild *lchild, char *buf)
 {
-	LOG_LVL loglvl=(LOG_LVL)strtol(strtok(buf, ":"), NULL, 10);
+	LOG_LVL loglvl=(LOG_LVL)strtol(strtok(buf, "$"), NULL, 10);
 	if(loglvl < lchild->lvl)
 		return 1;
 	switch(loglvl) {
@@ -43,7 +43,7 @@ int logchild_pretty_p(Logchild *lchild, char *buf)
 		fprintf(lchild->outf, "LOGCHILD: Unknown log level!\n");
 		return 0;
 	}
-	fprintf(lchild->outf, "%s\n", strtok(NULL, ":"));
+	fprintf(lchild->outf, "%s\n", strtok(NULL, "$"));
 
 	return 1;
 }
