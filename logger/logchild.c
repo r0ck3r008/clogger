@@ -74,6 +74,7 @@ void logchild_exec(Logchild *lchild)
 void logchild_deinit(Logchild *lchild)
 {
 	close(lchild->sock);
-	fclose(lchild->outf);
+	if(lchild->outf!=stdout)
+		fclose(lchild->outf);
 	free(lchild);
 }
