@@ -45,11 +45,12 @@ Logger *logger_init(char *path, LOG_LVL lvl)
 
 void logger_msg(Logger *logger, LOG_LVL lvl, char *fmt, ...)
 {
-	char buf[512];
+	char tmp[512], buf[1024];
 	va_list args;
 	va_start(args, fmt);
-	vsprintf(buf, fmt, args);
-	if(write(logger->sock, buf, sizeof(char)*512)<0) {
+	vsprintf(tmp, fmt, args);
+	sprintf(buf, "%d$%s", (int)lvl, tmp);
+	if(write(logger->sock, buf, sizeof(char)*1024)<0) {
 		fprintf(stderr, "[-]LOGGER: Write: %s\n", strerror(errno));
 		_exit(-1);
 	}

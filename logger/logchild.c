@@ -51,9 +51,9 @@ int logchild_pretty_p(Logchild *lchild, char *buf)
 void logchild_exec(Logchild *lchild)
 {
 	while(1) {
-		char buf[512];
+		char buf[1024];
 		int stat=1;
-		if((stat=read(lchild->sock, buf, sizeof(char)*512))<0) {
+		if((stat=read(lchild->sock, buf, sizeof(char)*1024))<0) {
 			fprintf(lchild->outf, "[-]LOGCHILD: Read: %s\n",
 							strerror(errno));
 			break;
