@@ -59,7 +59,9 @@ void logger_msg(Logger *logger, LOG_LVL lvl, char *fmt, ...)
 
 void logger_deinit(Logger *logger)
 {
-	if(write(logger->sock, "EXIT", sizeof(char)*512)<0) {
+	char buf[1024];
+	sprintf(buf, "EXIT");
+	if(write(logger->sock, buf, sizeof(char)*1024)<0) {
 		fprintf(stderr, "[-]LOGGER: Write: %s\n", strerror(errno));
 		_exit(-1);
 	}
